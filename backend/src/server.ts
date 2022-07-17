@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import express from 'express';
 import { PrismaClient, Product } from '@prisma/client';
+import cors from 'cors';
 
 const prisma = new PrismaClient();
 const server = express();
-
+server.use(cors());
 server.use(express.json());
 server.get('/product', async (request, response) => {
   const products = await prisma.product.findMany();
